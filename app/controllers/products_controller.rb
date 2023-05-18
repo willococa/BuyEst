@@ -56,6 +56,24 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def add_to_order
+    product = Product.find(params[:id])
+    current_order.order_items.create(product: product)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def remove_from_order
+    product = Product.find(params[:id])
+    current_order.order_items.where(product_id: product.id).destroy_all
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
