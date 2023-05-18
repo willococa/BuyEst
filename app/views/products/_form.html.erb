@@ -24,6 +24,10 @@
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true %>
   </div>
+  <div class="field">
+    <%= form.label :product_category_ids, "Categories" %>
+    <%= form.collection_select :product_category_ids, ProductCategory.all, :id, :name, {}, { multiple: true } %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
@@ -39,8 +43,4 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

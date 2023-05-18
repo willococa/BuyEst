@@ -1,13 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Products</h1>
-
-<div id="products">
+<div class="products">
   <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+    <div class="product">
+      <%= link_to product_path(product) do %>
+        <div class="product-image">
+          <% if product.images.attached? %>
+            <%= image_tag product.images.first.variant(resize_to_limit: [100, 100]) %>
+          <% else %>
+            No Image Available
+          <% end %>
+        </div>
+        <h2 class="product-name"><%= product.name %></h2>
+      <% end %>
+      <div class="product-description"><%= product.description %></div>
+      
+      <div><strong>Cost:</strong> <%= product.cost %></div>
+      <div><strong>Has First Sale:</strong> <%= product.has_first_sale? ? 'Yes' : 'No' %></div>
+      <div class="categories">
+      <strong>Categories:</strong>
+      <% product.product_categories.each do |category| %>
+        <span class="category"><%= category.name %></span>
+      <% end %>
+    </div>    
+    <div class="actions">
+      <%= link_to 'Show', product %>
+    </div>
+    </div>
   <% end %>
 </div>
 

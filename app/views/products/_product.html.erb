@@ -1,2 +1,38 @@
 <div id="<%= dom_id product %>">
+<!-- app/views/products/show.html.erb -->
+
+<h1><%= @product.name %></h1>
+
+<div class="product-details">
+  <div class="product-description">
+    <strong>Description:</strong>
+    <%= @product.description %>
+  </div>
+  <div class="product-cost">
+    <strong>Cost:</strong>
+    <%= @product.cost %>
+  </div>
+  <div class="product-has-first-sale">
+    <strong>Has First Sale:</strong>
+    <%= @product.has_first_sale? ? 'Yes' : 'No' %>
+  </div>
+</div>
+
+<div class="product-categories">
+<strong>Categories:</strong>
+<% product.product_categories.each do |category| %>
+  <span class="category"><%= category.name %></span>
+<% end %>
+</div>  
+<div class="product-images">
+  <% if @product.images.attached? %>
+    <h2>Images</h2>
+    <div class="image-gallery">
+      <% @product.images.each do |image| %>
+        <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
 </div>
