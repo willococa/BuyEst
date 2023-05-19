@@ -24,12 +24,22 @@
       <strong>Categories:</strong>
       <% product.product_categories.each do |category| %>
         <span class="category"><%= category.name %></span>
-      <% end %>
+  <% end %>
     </div>    
     <div class="actions">
       <%= link_to 'Show', product %>
-      <input type="button"  value="Add to Order" data-product-id="<%= product.id %>" class="add-product-to-order">
-    </div>
+        <div id="cart-button-product-<%= product.id %>" class="cart-button">      
+          <% if current_order && current_order.products.include?(product) %>
+            <button id="remove-from-order-button-product-<%= product.id %>" class="add-to-order-button" data-controller="remove-from-order" data-remove-from-order-target="productId" value="<%= product.id %>" data-action="click->remove-from-order#removeFromOrder" data-product-id="<%= product.id %>">
+              Remove from Order
+              </button>
+          <% else %>
+          <button id="add-to-order-button-product-<%= product.id %>" class="add-to-order-button" data-controller="add-to-order" data-add-to-order-target="productId" value="<%= product.id %>" data-action="click->add-to-order#addToOrder" data-product-id="<%= product.id %>">
+            Add to Order
+            </button>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

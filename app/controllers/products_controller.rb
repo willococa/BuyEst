@@ -59,20 +59,16 @@ class ProductsController < ApplicationController
   
   def add_to_order
     product = Product.find(params[:id])
-    current_order.order_items.create(product: product)
-
-    respond_to do |format|
-      format.js
-    end
+    current_order.order_items.create(product: product, quantity: product.cost)
+    # Render the JSON response with the OrderSerializer
+    render json: current_order, serializer: OrderSerializer
   end
 
   def remove_from_order
     product = Product.find(params[:id])
     current_order.order_items.where(product_id: product.id).destroy_all
-
-    respond_to do |format|
-      format.js
-    end
+   # Render the JSON response with the OrderSerializer
+   render json: current_order, serializer: OrderSerializer
   end
 
   private
