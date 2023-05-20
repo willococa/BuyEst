@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_product, only: %i[ show edit update destroy ]
-  before_action :authenticate_admin!, only: [:create, :edit, :update, :destroy]
 
   # GET /products or /products.json
   def index
@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def product_params
-      params.fetch(:product, {})
+    def product_params      
+      params.require(:product).permit(:name, :description, :cost, product_category_ids: [], images: [])
     end
 end

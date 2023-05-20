@@ -31,10 +31,10 @@ class Ability
     can :read, Product
 
     if user.present? && user.role == Client::ROLE
-      can :update, Product
+      can :read, Product
     end
     if user.present? && user.role == Admin::ROLE
-      can :update, Product
+      can :manage, Product
     end
   end
 end

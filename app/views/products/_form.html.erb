@@ -14,15 +14,13 @@
     <%= form.label :cost %>
     <%= form.number_field :cost %>
   </div>
-
-  <div class="field">
-    <%= form.label :has_first_sale %>
-    <%= form.check_box :has_first_sale %>
-  </div>
-
   <div class="field">
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true %>
+    <!-- Existing images -->
+    <% product.images.each do |image| %>
+      <%= image_tag(image.variant(resize_to_limit: [100, 100])) %>
+    <% end %>
   </div>
   <div class="field">
     <%= form.label :product_category_ids, "Categories" %>
