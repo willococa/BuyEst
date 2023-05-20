@@ -3,8 +3,12 @@
 <%= render @product %>
 
 <div>
+<% if can? :update, @product %>
   <%= link_to "Edit this product", edit_product_path(@product) %> |
+<% end %>
   <%= link_to "Back to products", products_path %>
 
+<% if can? :destroy, @product %>
   <%= button_to "Destroy this product", @product, method: :delete %>
+<% end %>
 </div>

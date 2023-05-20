@@ -3,12 +3,23 @@ require 'faker'
 # Create 4 Devise clients
 
 4.times do |i|
-    Client.create!(
-      email: "client#{i+1}@example.com",
+  Client.create!(
+    email: "client#{i+1}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    role: 'client'
+    # Add additional fields as necessary
+    # Example: name: "Client #{i+1}", age: 30, address: "123 Example St"
+  )
+end
+# Create 4 Devise admins
+
+4.times do |i|
+    Admin.create!(
+      email: "admin#{i+1}@example.com",
       password: 'password',
-      password_confirmation: 'password'
-      # Add additional fields as necessary
-      # Example: name: "Client #{i+1}", age: 30, address: "123 Example St"
+      password_confirmation: 'password',
+      role: 'admin'
     )
   end
   

@@ -25,6 +25,13 @@ class Clients::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
+  def create
+    # Sign out the admin if they are signed in
+    sign_out(:admin) if admin_signed_in?
+
+    super
+  end
+  
   def after_sign_in_path_for(resource)
     if resource.is_a?(Client)
       if resource.current_order.present? && !resource.current_order.checked_out

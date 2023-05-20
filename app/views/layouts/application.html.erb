@@ -12,19 +12,26 @@
   </head>
 
   <body>
-    <% if client_signed_in? %>
-      <%= button_to 'Logout', destroy_client_session_path, method: :delete %>
-      <ul class="cart">
-        <lh><h2>Cart: </h2></lh>
-        <li><strong>Items: </strong> <span class="order-items-count"><%= current_order.items_count %></span></li>
-        <li><strong>Total: </strong> <span class="order-total"><%= number_to_currency(current_order.total_price) %></span></li>
-      </ul>
-      <span><strong>Cart: </strong></span>
-      <%= link_to "Checkout", new_checkout_path %>
-      <% else %>
-      <!-- Client is not logged in, show login button -->
-      <%= link_to 'Login', new_client_session_path %>
-    <% end %>
+  
+  <% if admin_signed_in? %>
+    <%= button_to 'Logout', destroy_admin_session_path, method: :delete %>
+    <% else %>
+    <!-- Admin is not logged in, show login button -->
+    <%= link_to 'Login as Admin', admin_session_path %>
+  <% end %>
+  <% if client_signed_in? %>
+    <%= button_to 'Logout', destroy_client_session_path, method: :delete %>
+    <ul class="cart">
+      <lh><h2>Cart: </h2></lh>
+      <li><strong>Items: </strong> <span class="order-items-count"><%= current_order.items_count %></span></li>
+      <li><strong>Total: </strong> <span class="order-total"><%= number_to_currency(current_order.total_price) %></span></li>
+    </ul>
+    <span><strong>Cart: </strong></span>
+    <%= link_to "Checkout", new_checkout_path %>
+    <% else %>
+    <!-- Client is not logged in, show login button -->
+    <%= link_to 'Login as Client', new_client_session_path %>
+  <% end %>
   
     <%= yield %>
   </body>
