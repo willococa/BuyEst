@@ -53,7 +53,8 @@ gem 'active_model_serializers'
 # paper trail to track chan ges in models
 gem 'paper_trail'
 
-
+# user authorization
+gem 'cancancan'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

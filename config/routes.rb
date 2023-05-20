@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   get '/orders/:id', to: 'orders#show', as: 'order'
   get '/checkout', to: 'checkout#new', as: 'new_checkout'
   post '/checkout', to: 'checkout#create', as: 'create_checkout'
