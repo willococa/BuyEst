@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr>
+        <td><%= image_tag item.product.images.first.variant(resize_to_limit: [100, 100]) %></td>
+        <td><%= item.product.name %></td>
+        <td><%= number_to_currency(item.product.cost) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Total: <%= number_to_currency(@order.total_price) %></p>
+<%= button_to "Checkout", create_checkout_path, method: :post, class: "btn btn-primary" %>
+

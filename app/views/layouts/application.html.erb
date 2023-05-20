@@ -20,7 +20,7 @@
         <li><strong>Total: </strong> <span class="order-total"><%= number_to_currency(current_order.total_price) %></span></li>
       </ul>
       <span><strong>Cart: </strong></span>
-      <%= current_order.order_items.count %>
+      <%= link_to "Checkout", new_checkout_path %>
       <% else %>
       <!-- Client is not logged in, show login button -->
       <%= link_to 'Login', new_client_session_path %>

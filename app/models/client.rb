@@ -5,4 +5,5 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :orders
   belongs_to :current_order, class_name: "Order", optional: true
+  has_many :sales
 end

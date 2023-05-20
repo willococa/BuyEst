@@ -30,7 +30,7 @@ class Clients::SessionsController < Devise::SessionsController
       if resource.current_order.present? && !resource.current_order.checked_out
         flash[:notice] = "Your current order: #{resource.current_order.attributes}"
       else
-        order = resource.orders.create
+        order = Order.new(checked_out: false, client: resource)
         resource.update(current_order: order)
         flash[:notice] = "New order created: #{order.attributes}"
       end
