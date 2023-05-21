@@ -9,7 +9,5 @@ class Product < ApplicationRecord
     validates :cost, presence: true
     validates :product_category_ids, presence: true
     validates :description, presence: true
-    validates :images, presence: { message: 'must have at least one image' }
-end
-    
+    validates :images, presence: { message: 'must have at least one image' }    
 end
