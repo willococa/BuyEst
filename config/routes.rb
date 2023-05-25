@@ -1,10 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
   get '/orders/:id', to: 'orders#show', as: 'order'
-  get '/checkout', to: 'checkout#new', as: 'new_checkout'
-  post '/checkout', to: 'checkout#create', as: 'create_checkout'
+  get '/checkouts', to: 'checkouts#new', as: 'new_checkout'
+  post '/checkouts', to: 'checkouts#create', as: 'create_checkout'
+  resources :checkouts, only: [:new, :create]
   resources :product_categories
   resources :products do
     post 'add_to_order', on: :member
@@ -17,4 +20,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "products#index"
+
+  mount Sidekiq::Web => '/sidekiq'
 end

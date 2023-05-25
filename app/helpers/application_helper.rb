@@ -10,7 +10,7 @@ module ApplicationHelper
             current_client
         elsif admin_signed_in?
             current_admin
-        else 
+        else
             Guest.new
         end
     end

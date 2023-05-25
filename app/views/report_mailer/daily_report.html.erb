@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Report</title>
+</head>
+<body>
+  <h1>Daily Report</h1>
+<% debugger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       %>
+  <% @report_data.each do |order_data| %>
+    <h2>Order Number: <%= order_data[:order_number] %></h2>
+    <p>Customer Name: <%= order_data[:customer_name] %></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Item Registration ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% order_data[:products].each do |product| %>
+          <tr>
+            <td><%= product[:product_name] %></td>
+            <td><%= product[:item_registration_id] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <hr>
+  <% end %>
+</body>
+</html>

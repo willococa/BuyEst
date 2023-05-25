@@ -1,4 +1,4 @@
-class CheckoutController < ApplicationController
+class CheckoutsController < ApplicationController
     def new
         @order = current_order
     end
@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
       checkout_service = CheckoutService.new(@order, current_client)
   
       if checkout_service.checkout
-        redirect_to root_path, notice: "Checkout successful!"
+        redirect_to root_path, notice: "Checkout successful! #{@order.attributes}"
       else
         redirect_to root_path, alert: "Failed to checkout."
       end
