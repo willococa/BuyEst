@@ -7,5 +7,4 @@ class Client < ApplicationRecord
   has_many :orders
   belongs_to :current_order, -> { includes(:order_items) }, class_name: "Order", optional: true
   has_many :sales
-  default_scope { includes(:current_order) }
 end

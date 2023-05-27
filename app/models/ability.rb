@@ -31,11 +31,12 @@ class Ability
     can :read, Product
 
     if user.present? && user.role == Client::ROLE
-      can [:read, :add_to_order, :remove_from_order], Product      
+      can [:read, :add_to_order, :remove_from_order], Product
       can [:create, :read], :checkouts
     end
     if user.present? && user.role == Admin::ROLE
       can :manage, Product
+      can :manage, Sale
     end
   end
 end

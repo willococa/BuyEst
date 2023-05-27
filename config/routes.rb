@@ -22,4 +22,12 @@ Rails.application.routes.draw do
   root "products#index"
 
   mount Sidekiq::Web => '/sidekiq'
+
+  namespace :api do
+    scope :auth do
+      post '/login', to: 'authentication#login'
+      post '/register', to: 'authentication#register'
+    end
+    get "/most_purchased_products_by_category", to: "sales#most_purchased_products_by_category"
+  end
 end

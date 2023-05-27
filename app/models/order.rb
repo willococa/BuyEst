@@ -3,7 +3,6 @@ class Order < ApplicationRecord
   belongs_to :client
   has_many :order_items, strict_loading: true
   has_many :products, through: :order_items, strict_loading: true
-
   default_scope { includes(:products) }
   has_one :sale
 
